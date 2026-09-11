@@ -1,0 +1,22 @@
+flowchart TD
+    START([▶ Cashier Opens Expenses])
+    START --> E1[/Open Expense Ledger/]
+    E1 --> E2{Choose Action}
+
+    E2 -->|Record| E3[/Enter Date, Category, Description, Amount/]
+    E3 --> E4[Validate Inputs]
+    E4 --> E5{Valid?}
+    E5 -->|No| E3
+    E5 -->|Yes| E6[Save Expense]
+    E6 --> E7[(Store in Database)]
+    E7 --> E8[/Show Updated Totals/]
+
+    E2 -->|View| E9[Filter by Date or Category]
+    E9 --> E8
+
+    E2 -->|Delete| E10{Confirm Delete?}
+    E10 -->|Yes| E11[Remove Record]
+    E11 --> E7
+    E10 -->|No| E8
+
+    E8 --> DONE([■ End])

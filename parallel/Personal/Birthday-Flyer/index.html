@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bea Angel J. Sugue — 18th Birthday Celebration</title>
+    <meta name="description"
+        content="You are cordially invited to celebrate the 18th birthday of Bea Angel J. Sugue. A night to remember.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <div class="preloader-ring"></div>
+            <div class="preloader-ring"></div>
+            <span class="preloader-text">18</span>
+        </div>
+    </div>
+
+    <!-- Music Toggle -->
+    <button id="music-toggle" class="music-btn" aria-label="Toggle background music">
+        <svg id="music-icon-on" class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" style="display:none;">
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+        </svg>
+        <svg id="music-icon-off" class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+            <line x1="1" y1="1" x2="23" y2="23" stroke-width="2.5" />
+        </svg>
+    </button>
+
+    <!-- Replay Button -->
+    <button id="replay-btn" class="replay-btn" aria-label="Replay cinematic intro">
+        <svg class="replay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+        </svg>
+    </button>
+
+    <!-- Background Layers -->
+    <div class="bg-layer bg-bokeh"></div>
+    <div class="bg-layer bg-light-leak"></div>
+    <div class="bg-layer bg-damask"></div>
+
+    <!-- Particles Canvas -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="sparkles-container" id="sparkles-container"></div>
+
+    <!-- Animated Page Border -->
+    <div class="page-border cinema-el" data-cinema="0" data-cinema-type="fade">
+        <div class="border-corner border-tl"></div>
+        <div class="border-corner border-tr"></div>
+        <div class="border-corner border-bl"></div>
+        <div class="border-corner border-br"></div>
+        <div class="border-line border-top"></div>
+        <div class="border-line border-right"></div>
+        <div class="border-line border-bottom"></div>
+        <div class="border-line border-left"></div>
+    </div>
+
+    <!-- Cinematic Flash Overlay -->
+    <div class="cinema-flash" id="cinema-flash"></div>
+
+    <!-- ===== MAIN INVITATION ===== -->
+    <main class="invitation" id="invitation">
+
+        <!-- LEFT COLUMN — Enhanced Design -->
+        <div class="left-col">
+
+            <!-- Decorative Background Lines -->
+            <div class="left-bg-deco">
+                <div class="deco-circle deco-circle-1"></div>
+                <div class="deco-circle deco-circle-2"></div>
+                <div class="deco-circle deco-circle-3"></div>
+            </div>
+
+            <!-- Crown -->
+            <div class="crown-container cinema-el" data-cinema="1" data-cinema-type="drop">
+                <svg class="crown-svg" viewBox="0 0 140 55" fill="none">
+                    <path d="M15 48 L28 12 L45 30 L60 2 L75 30 L92 12 L105 48" stroke="url(#crownGrad)"
+                        stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M15 48 Q60 55 105 48" stroke="url(#crownGrad)" stroke-width="2" />
+                    <circle cx="60" cy="2" r="4" fill="#FFD700">
+                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="28" cy="12" r="3" fill="#D4AF37" />
+                    <circle cx="92" cy="12" r="3" fill="#D4AF37" />
+                    <circle cx="45" cy="30" r="2.5" fill="#C9A84C" />
+                    <circle cx="75" cy="30" r="2.5" fill="#C9A84C" />
+                    <!-- Tiny gems -->
+                    <circle cx="37" cy="20" r="1.5" fill="#FFD700" opacity="0.4" />
+                    <circle cx="83" cy="20" r="1.5" fill="#FFD700" opacity="0.4" />
+                    <defs>
+                        <linearGradient id="crownGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#8B6914" />
+                            <stop offset="25%" stop-color="#FFD700" />
+                            <stop offset="50%" stop-color="#F7E7CE" />
+                            <stop offset="75%" stop-color="#FFD700" />
+                            <stop offset="100%" stop-color="#8B6914" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Happy Birthday Label -->
+            <div class="turning-label cinema-el" data-cinema="2" data-cinema-type="fade">
+                <span class="turning-text">Happy</span>
+            </div>
+
+            <!-- Giant 18th -->
+            <div class="age-number-container cinema-el" data-cinema="3" data-cinema-type="scale">
+                <div class="orbit-ring orbit-ring-1"></div>
+                <div class="orbit-ring orbit-ring-2"></div>
+                <div class="age-number-wrapper">
+                    <span class="age-number" id="age-number">18</span>
+                    <span class="age-suffix">th</span>
+                </div>
+                <div class="age-glow"></div>
+                <div class="age-sparkle age-sparkle-1">✦</div>
+                <div class="age-sparkle age-sparkle-2">✧</div>
+                <div class="age-sparkle age-sparkle-3">✦</div>
+                <div class="age-sparkle age-sparkle-4">✧</div>
+                <div class="age-sparkle age-sparkle-5">⟡</div>
+                <div class="age-sparkle age-sparkle-6">✶</div>
+            </div>
+
+            <!-- Birthday Text -->
+            <div class="birthday-text cinema-el" data-cinema="3" data-cinema-type="fade">
+                <span class="birthday-word">Birthday</span>
+            </div>
+
+            <!-- Elaborate Flourish Divider -->
+            <div class="flourish cinema-el" data-cinema="4" data-cinema-type="expand">
+                <svg class="flourish-svg" viewBox="0 0 320 40" fill="none">
+                    <!-- Main wave -->
+                    <path
+                        d="M0 20 C20 8 40 8 60 20 C80 32 100 32 120 20 L160 20 L200 20 C220 8 240 8 260 20 C280 32 300 32 320 20"
+                        stroke="url(#flourishGrad)" stroke-width="1.2" fill="none" opacity="0.7" />
+                    <!-- Inner wave -->
+                    <path d="M40 20 C55 13 70 13 85 20 L160 20 L235 20 C250 13 265 13 280 20"
+                        stroke="url(#flourishGrad)" stroke-width="0.6" fill="none" opacity="0.3" />
+                    <!-- Center diamond -->
+                    <path d="M155 12 L160 7 L165 12 L160 17 Z" fill="#D4AF37" opacity="0.8" />
+                    <!-- Side dots -->
+                    <circle cx="120" cy="20" r="2" fill="#C9A84C" opacity="0.6" />
+                    <circle cx="200" cy="20" r="2" fill="#C9A84C" opacity="0.6" />
+                    <circle cx="100" cy="20" r="1.2" fill="#C9A84C" opacity="0.35" />
+                    <circle cx="220" cy="20" r="1.2" fill="#C9A84C" opacity="0.35" />
+                    <defs>
+                        <linearGradient id="flourishGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="transparent" />
+                            <stop offset="20%" stop-color="#8B6914" />
+                            <stop offset="40%" stop-color="#C9A84C" />
+                            <stop offset="50%" stop-color="#FFD700" />
+                            <stop offset="60%" stop-color="#C9A84C" />
+                            <stop offset="80%" stop-color="#8B6914" />
+                            <stop offset="100%" stop-color="transparent" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Name with Decorative Frame -->
+            <div class="name-section cinema-el" data-cinema="5" data-cinema-type="typewriter">
+                <div class="name-deco-line left-line"></div>
+                <div class="name-inner">
+                    <div class="name-ornament">❖</div>
+                    <h1 class="debutante-name" id="debutante-name">Bea Angel J. Sugue</h1>
+                    <div class="name-ornament">❖</div>
+                </div>
+                <div class="name-deco-line right-line"></div>
+            </div>
+
+            <!-- Tagline with Enhanced Wings -->
+            <div class="tagline-section cinema-el" data-cinema="6" data-cinema-type="fade">
+                <div class="tagline-wing-line"></div>
+                <div class="tagline-star">✦</div>
+                <p class="tagline">A Night to Remember</p>
+                <div class="tagline-star">✦</div>
+                <div class="tagline-wing-line"></div>
+            </div>
+
+            <!-- Event Details with Glass Cards -->
+            <div class="event-details">
+                <div class="detail-row cinema-el" data-cinema="7" data-cinema-type="slide-right">
+                    <div class="detail-icon-wrap">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                    </div>
+                    <div class="detail-text">
+                        <span class="detail-value">August 11, 2026</span>
+                    </div>
+                </div>
+                <div class="detail-row cinema-el" data-cinema="8" data-cinema-type="slide-right">
+                    <div class="detail-icon-wrap">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <div class="detail-text">
+                        <span class="detail-value">6:00 in the Evening</span>
+                    </div>
+                </div>
+                <div class="detail-row cinema-el" data-cinema="9" data-cinema-type="slide-right">
+                    <div class="detail-icon-wrap">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                    </div>
+                    <div class="detail-text">
+                        <span class="detail-label">Venue</span>
+                        <span class="detail-value">Sugue Residence</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="invitation-footer cinema-el" data-cinema="10" data-cinema-type="fade">
+                <div class="footer-flourish">
+                    <span class="footer-star">✦</span>
+                    <span class="footer-dash">———</span>
+                    <span class="footer-star">✦</span>
+                </div>
+                <p class="footer-text">Welcome to the Celebration. Thank you for joining us today.</p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN — Portrait -->
+        <div class="right-col cinema-el" data-cinema="4" data-cinema-type="photo-reveal">
+            <div class="image-frame">
+                <div class="image-frame-border"></div>
+                <div class="image-glow-ring"></div>
+                <div class="image-container">
+                    <div class="slideshow-container" id="slideshow-container">
+                        <img src="assets/birthday-photo.jpg" class="hero-portrait slide active" id="slide-a" alt="Portrait A">
+                        <img src="" class="hero-portrait slide" id="slide-b" alt="Portrait B">
+                    </div>
+                    <div class="image-overlay"></div>
+                    <div class="image-light-streak"></div>
+                    
+                    <!-- Decorative Folliage inside the picture -->
+                    <div class="photo-deco photo-deco-tl">
+                        <svg viewBox="0 0 80 80" fill="none">
+                            <path d="M0,0 L80,0 C60,20 40,40 0,80 Z" fill="url(#photoDecoGrad)" opacity="0.1"/>
+                            <path d="M10,0 Q10,30 40,40 Q20,50 20,70" stroke="url(#photoDecoGrad)" stroke-width="1.2" fill="none"/>
+                            <path d="M0,10 Q30,10 40,40 Q50,20 70,20" stroke="url(#photoDecoGrad)" stroke-width="1.2" fill="none"/>
+                            <path d="M15,15 Q25,10 30,20 Q20,25 15,15 Z" fill="#D4AF37" opacity="0.7"/>
+                            <path d="M25,35 Q35,30 40,40 Q30,45 25,35 Z" fill="#D4AF37" opacity="0.7"/>
+                            <circle cx="40" cy="40" r="1.5" fill="#FFD700"/>
+                            <circle cx="20" cy="70" r="1.5" fill="#FFD700"/>
+                            <circle cx="70" cy="20" r="1.5" fill="#FFD700"/>
+                            <defs>
+                                <linearGradient id="photoDecoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFD700"/>
+                                    <stop offset="50%" stop-color="#C9A84C"/>
+                                    <stop offset="100%" stop-color="#8B6914"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="photo-deco photo-deco-br">
+                        <svg viewBox="0 0 80 80" fill="none">
+                            <path d="M80,80 L0,80 C20,60 40,40 80,0 Z" fill="url(#photoDecoGrad)" opacity="0.1"/>
+                            <path d="M70,80 Q70,50 40,40 Q60,30 60,10" stroke="url(#photoDecoGrad)" stroke-width="1.2" fill="none"/>
+                            <path d="M80,70 Q50,70 40,40 Q30,60 10,60" stroke="url(#photoDecoGrad)" stroke-width="1.2" fill="none"/>
+                            <path d="M65,65 Q55,70 50,60 Q60,55 65,65 Z" fill="#D4AF37" opacity="0.7"/>
+                            <path d="M55,45 Q45,50 40,40 Q50,35 55,45 Z" fill="#D4AF37" opacity="0.7"/>
+                            <circle cx="40" cy="40" r="1.5" fill="#FFD700"/>
+                            <circle cx="60" cy="10" r="1.5" fill="#FFD700"/>
+                            <circle cx="10" cy="60" r="1.5" fill="#FFD700"/>
+                        </svg>
+                    </div>
+                    <div class="photo-inner-border">
+                        <div class="inner-corner tl"></div>
+                        <div class="inner-corner tr"></div>
+                        <div class="inner-corner bl"></div>
+                        <div class="inner-corner br"></div>
+                    </div>
+                </div>
+                <div class="image-frame-corner tl"></div>
+                <div class="image-frame-corner tr"></div>
+                <div class="image-frame-corner bl"></div>
+                <div class="image-frame-corner br"></div>
+                <div class="image-label"><span>✦ XVIII ✦</span></div>
+            </div>
+        </div>
+
+        <!-- Floating Roses -->
+        <div class="rose rose-1">❀</div>
+        <div class="rose rose-2">✿</div>
+        <div class="rose rose-3">❀</div>
+        <div class="rose rose-4">✿</div>
+        <div class="rose rose-5">❀</div>
+        <div class="rose rose-6">✿</div>
+    </main>
+
+    <div class="bokeh-container" id="bokeh-container"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

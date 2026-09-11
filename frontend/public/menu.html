@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="Comoda Restaurant Digital Menu — Browse our food and drinks, prices updated live." />
+  <title>Comoda — Digital Menu</title>
+  <!-- Local fonts — no internet needed -->
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #d4a853;
+      --gold-light: #f0c97a;
+      --dark: #0e0e12;
+      --dark2: #16161e;
+      --dark3: #1e1e28;
+      --dark4: #252530;
+      --card: #1c1c26;
+      --border: rgba(212,168,83,0.18);
+      --text: #f0ede8;
+      --muted: #9b9898;
+      --green: #3ecf8e;
+      --red: #f56565;
+      --radius: 16px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.45);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO HEADER ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(160deg, #1a1020 0%, #0e0e12 60%);
+      padding: 48px 20px 36px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse at center, rgba(212,168,83,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212,168,83,0.12);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .hero-badge svg { width:10px; height:10px; fill: var(--gold); }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #f5e6c8 0%, var(--gold) 50%, #c8922a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--green);
+      margin-top: 4px;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto 0;
+    }
+
+    /* ── STICKY CATEGORY NAV ── */
+    .cat-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,18,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 12px;
+    }
+    .cat-nav {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+    .cat-nav::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      flex-shrink: 0;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+    .cat-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+    .cat-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0e0e12;
+      font-weight: 600;
+    }
+
+    /* ── SEARCH ── */
+    .search-wrap {
+      padding: 16px 16px 0;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+    .search-box svg { width: 16px; height: 16px; fill: var(--muted); flex-shrink: 0; }
+    .search-box input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+    }
+    .search-box input::placeholder { color: var(--muted); }
+
+    /* ── MAIN CONTENT ── */
+    .content { padding: 20px 14px 80px; }
+
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--gold-light);
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+    }
+    @media (min-width: 480px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    }
+    @media (min-width: 768px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--gold);
+      border-color: rgba(212,168,83,0.4);
+    }
+    .card:active { transform: scale(0.97); }
+
+    .card-img-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--dark3);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .card:hover .card-img-wrap img { transform: scale(1.05); }
+    .card-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, var(--dark3), var(--dark4));
+    }
+    .card-badge {
+      position: absolute;
+      top: 8px; right: 8px;
+      background: rgba(14,14,18,0.85);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px 8px;
+      font-size: 10px;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(6px);
+    }
+
+    .card-body {
+      padding: 12px 12px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .card-cat {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .card-servings { margin-top: 5px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .02em; }
+    .card-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      z-index: 500;
+      align-items: flex-end;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--dark2);
+      border-radius: 24px 24px 0 0;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.32s cubic-bezier(0.34,1.2,0.64,1);
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-handle {
+      width: 38px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 12px auto 0;
+    }
+    .modal-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: var(--dark3);
+    }
+    .modal-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      background: linear-gradient(135deg, var(--dark3), var(--dark4));
+    }
+    .modal-body { padding: 20px 22px 36px; }
+    .modal-cat {
+      font-size: 11px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .modal-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .modal-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: var(--dark4);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1;
+    }
+    .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+    .modal-wrap { position: relative; }
+
+    /* ── STATES ── */
+    .state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .state .icon { font-size: 3rem; margin-bottom: 12px; }
+    .state h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 6px; }
+    .state p { font-size: 13px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    .footer span { color: var(--gold); }
+
+    /* ── SKELETON ── */
+    .skeleton-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .skeleton-img { width: 100%; aspect-ratio: 4/3; background: var(--dark3); }
+    .skeleton-body { padding: 12px; }
+    .skeleton-line {
+      height: 12px; border-radius: 6px;
+      background: linear-gradient(90deg, var(--dark3) 25%, var(--dark4) 50%, var(--dark3) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      margin-bottom: 8px;
+    }
+    .skeleton-line.short { width: 55%; }
+    .skeleton-line.price { width: 40%; height: 16px; margin-top: 10px; }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--dark4); border-radius: 3px; }
+
+    /* ── CART FLOAT BUTTON ── */
+    .cart-float-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, #c4bcaf 100%);
+      box-shadow: 0 8px 32px rgba(229, 172, 59, 0.35), 0 0 0 1px rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 400;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .cart-float-btn:hover {
+      transform: scale(1.08);
+    }
+    .cart-float-btn:active {
+      transform: scale(0.95);
+    }
+    .cart-float-btn .icon {
+      font-size: 30px;
+    }
+    .cart-float-btn .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--red);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 50%;
+      min-width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--dark);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    /* ── CART DRAWER & CUSTOM ADJUSTMENTS ── */
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      gap: 10px;
+    }
+    .cart-item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+    .cart-item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cart-item-price {
+      font-size: 12px;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .cart-qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: none;
+      background: var(--dark4);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .cart-qty-btn:hover {
+      background: var(--border);
+      color: var(--gold);
+    }
+    .cart-qty-val {
+      font-size: 13px;
+      font-weight: 700;
+      min-width: 16px;
+      text-align: center;
+    }
+    .cart-remove-btn {
+      background: none;
+      border: none;
+      color: var(--red);
+      font-size: 15px;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+    .cart-remove-btn:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Table Occupied Blocking Overlay -->
+<div id="table-occupied-overlay" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(14,14,18,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: none; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center;">
+  <div style="background: var(--dark2); border: 1px solid var(--border); border-radius: 24px; padding: 40px 32px; max-width: 400px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.6);">
+    <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(245,101,101,0.12); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1.5px solid var(--red);">
+      <span style="font-size: 32px;">🚫</span>
+    </div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--red); margin-bottom: 10px;">Table Occupied</h2>
+    <p id="occupied-msg" style="font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
+      This table currently has an active order. Please wait until the current customer has finished and checked out, or ask a staff member for assistance.
+    </p>
+    <div style="background: var(--dark3); border: 1px solid var(--border); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; text-align: left;">
+      <div style="display: flex; justify-content: space-between; font-size: 12px;">
+        <span style="color: var(--muted);">Table</span>
+        <strong id="occupied-table" style="color: var(--gold);">—</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px;">
+        <span style="color: var(--muted);">Active Order</span>
+        <strong id="occupied-order" style="color: var(--text);">—</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px;">
+        <span style="color: var(--muted);">Status</span>
+        <strong id="occupied-status" style="color: var(--gold-light);">—</strong>
+      </div>
+    </div>
+    <button onclick="recheckTableStatus()" id="recheck-btn" style="width: 100%; padding: 13px; border-radius: 12px; border: none; background: linear-gradient(135deg, var(--gold) 0%, #c8922a 100%); color: #0e0e12; font-weight: 700; font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; margin-bottom: 10px;">🔄 Check Again</button>
+    <p style="font-size: 11px; color: var(--muted); opacity: 0.7;">The page will automatically unlock when the table becomes available.</p>
+  </div>
+</div>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-badge">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+    Est. Comoda Restaurant
+  </div>
+  <h1 id="restaurant-name">Comoda</h1>
+  <p class="hero-sub">Explore our freshly curated menu</p>
+  <div class="live-badge">
+    <span class="live-dot"></span>
+    <span id="last-updated">Live menu — loading...</span>
+  </div>
+  <div class="divider"></div>
+</header>
+
+<!-- Category Nav -->
+<nav class="cat-nav-wrap" id="cat-nav-wrap">
+  <div class="cat-nav" id="cat-nav">
+    <button class="cat-btn active" data-cat="all" onclick="filterCat('all',this)">🍽 All</button>
+  </div>
+</nav>
+
+<!-- Search -->
+<div class="search-wrap">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+    <input type="text" id="search-input" placeholder="Search dishes, drinks..." oninput="handleSearch()" />
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="content" id="content">
+  <!-- Skeleton loaders -->
+  <div id="skeleton-wrap">
+    <div class="section-label">Loading Menu...</div>
+    <div class="grid" id="skeleton-grid"></div>
+  </div>
+  <div id="menu-wrap" style="display:none;"></div>
+  <div id="empty-state" style="display:none;" class="state">
+    <div class="icon">🔍</div>
+    <h3>No items found</h3>
+    <p>Try a different category or search term.</p>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-wrap">
+    <div class="modal" id="modal">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Cart Button -->
+<div id="cart-float-btn" class="cart-float-btn" onclick="openCartDrawer()" style="display: none;">
+  <span class="icon">🛒</span>
+  <span id="cart-badge" class="badge">0</span>
+</div>
+
+<!-- Cart Overlay / Drawer -->
+<div class="modal-overlay" id="cart-overlay" onclick="closeCartDrawer(event)">
+  <div class="modal-wrap">
+    <div class="modal" id="cart-drawer" style="border-radius: 24px 24px 0 0; background: var(--dark2);">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeCartDrawerBtn()">✕</button>
+      
+      <div class="cart-drawer-content" style="padding: 24px 22px 36px; max-height: 80vh; display: flex; flex-direction: column;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold-light); margin-bottom: 18px; display: flex; align-items: center; gap: 10px;">
+          🛒 Your Order
+        </h2>
+        
+        <!-- Cart Items List -->
+        <div id="cart-items-container" style="overflow-y: auto; max-height: 40vh; margin-bottom: 20px; display: flex; flex-direction: column; gap: 14px; padding-right: 4px;">
+          <!-- Items will be injected here -->
+        </div>
+        
+        <!-- Order Details Form -->
+        <div class="order-form" style="border-top: 1px solid var(--border); padding-top: 18px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+          <div class="form-group" style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.8px; font-weight: 600;">Table Number</label>
+            <input type="number" id="checkout-table" min="1" max="15" style="background: var(--dark3); border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: var(--text); font-size: 14px; outline: none; font-family: 'Inter', sans-serif;" placeholder="Enter your Table Number (1–15)" />
+            <p id="table-locked-msg" style="display: none; font-size: 11px; color: var(--green); margin-top: 2px;">✓ Auto-detected and locked from QR code</p>
+          </div>
+          
+          <div class="form-group" style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.8px; font-weight: 600;">Special Notes</label>
+            <textarea id="checkout-notes" rows="2" style="background: var(--dark3); border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: var(--text); font-size: 14px; outline: none; font-family: 'Inter', sans-serif; resize: none;" placeholder="E.g. No onions, extra ice, allergy warnings..."></textarea>
+          </div>
+
+          <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.8px; font-weight: 600;">Payment Method</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <button type="button" id="pay-method-cash" onclick="setCustomerPayMethod('Cash')" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border-radius: 12px; background: var(--dark3); border: 1.5px solid var(--gold); color: var(--gold-light); font-weight: 700; font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <span style="font-size: 15px;">💵</span> Cash
+              </button>
+              <button type="button" id="pay-method-online" onclick="setCustomerPayMethod('Online Payment')" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border-radius: 12px; background: var(--dark3); border: 1.5px solid var(--border); color: var(--muted); font-weight: 700; font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);">
+                <span style="font-size: 15px;">💳</span> Online Payment
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Totals & Checkout Button -->
+        <div class="cart-totals" style="border-top: 1px dashed var(--border); padding-top: 16px; margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; margin-bottom: 8px;">
+            <span style="color: var(--muted);">Subtotal</span>
+            <span id="checkout-subtotal" style="font-weight: 600;">₱ 0.00</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; color: var(--gold-light);">
+            <span>Total</span>
+            <span id="checkout-total">₱ 0.00</span>
+          </div>
+        </div>
+        
+        <button onclick="submitCustomerOrder()" id="btn-submit-order" style="width: 100%; padding: 14px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--gold) 0%, #c8922a 100%); color: #0e0e12; font-weight: 800; font-size: 14px; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; font-family: 'Inter', sans-serif;">
+          <span>Place Order</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Overlay -->
+<div class="modal-overlay" id="success-overlay" onclick="closeSuccessModal(event)">
+  <div class="modal-wrap">
+    <div class="modal" style="border-radius: 24px; max-width: 440px; background: var(--dark2); text-align: center;">
+      <div class="modal-body" style="padding: 40px 24px;">
+        <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(62,207,142,0.12); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1.5px solid var(--green);">
+          <span style="font-size: 32px; color: var(--green);">✓</span>
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold-light); margin-bottom: 8px;">Order Placed!</h2>
+        <p style="font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 24px;">
+          Your order has been sent to the kitchen and POS system. Staff will bring your items to your table shortly!
+        </p>
+        
+        <div style="background: var(--dark3); border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px;">
+            <span style="color: var(--muted);">Order Number</span>
+            <strong id="success-order-id" style="color: var(--text);">#1024</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px;">
+            <span style="color: var(--muted);">Table</span>
+            <strong id="success-table-id" style="color: var(--gold);">Table 3</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; border-top: 1px dashed var(--border); padding-top: 10px;">
+            <span style="color: var(--muted);">Total Amount</span>
+            <strong id="success-total" style="color: var(--green);">₱ 450.00</strong>
+          </div>
+        </div>
+        
+        <button onclick="closeSuccessModalBtn()" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--dark4); color: var(--text); font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;">
+          Close & Back to Menu
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  Digital menu powered by <span>Comoda</span> Restaurant System · Auto-synced from database
+</footer>
+
+<script>
+const API_BASE = window.location.origin + '/api';
+let allItems = [];
+let activeCat = 'all';
+let searchQuery = '';
+
+const CATEGORY_EMOJI = {
+  'Food': '🍽',
+  'Drinks': '🥤',
+  'Beverage': '🍵',
+  'Dessert': '🍰',
+  'Appetizer': '🥗',
+  'Main Course': '🍲',
+  'Seafood': '🦐',
+  'Rice': '🍚',
+  'Pasta': '🍝',
+  'Soup': '🍜',
+  'Snacks': '🍟',
+  'Alcohol': '🍺',
+  'Coffee': '☕',
+  'Juice': '🧃',
+  'Soda': '🥤',
+};
+
+function getEmoji(cat) {
+  for (const key of Object.keys(CATEGORY_EMOJI)) {
+    if (cat.toLowerCase().includes(key.toLowerCase())) return CATEGORY_EMOJI[key];
+  }
+  return '🍽';
+}
+
+// Render skeleton cards
+function renderSkeletons(n = 8) {
+  const g = document.getElementById('skeleton-grid');
+  g.innerHTML = Array.from({length: n}, () => `
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line short"></div>
+        <div class="skeleton-line price"></div>
+      </div>
+    </div>`).join('');
+}
+
+// Format price
+function fmt(price) {
+  return '₱ ' + Number(price).toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+
+// Image or emoji placeholder
+function imgOrPlaceholder(item, cls = '') {
+  if (item.image) {
+    return `<img src="${escHtml(item.image)}" alt="${escHtml(item.name)}" class="${cls}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'card-img-placeholder\'>${getEmoji(item.category)}</div>'"/>`;
+  }
+  return `<div class="card-img-placeholder">${getEmoji(item.category)}</div>`;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Build category nav
+function buildNav(categories) {
+  const nav = document.getElementById('cat-nav');
+  const existing = ['all'];
+  categories.forEach(cat => {
+    if (existing.includes(cat)) return;
+    existing.push(cat);
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.dataset.cat = cat;
+    btn.textContent = getEmoji(cat) + ' ' + cat;
+    btn.onclick = () => filterCat(cat, btn);
+    nav.appendChild(btn);
+  });
+}
+
+function filterCat(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenu();
+}
+
+function handleSearch() {
+  searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+  renderMenu();
+}
+
+function getFiltered() {
+  let items = allItems;
+  if (activeCat !== 'all') items = items.filter(i => i.category === activeCat);
+  if (searchQuery) items = items.filter(i =>
+    i.name.toLowerCase().includes(searchQuery) ||
+    i.category.toLowerCase().includes(searchQuery)
+  );
+  return items;
+}
+
+function renderMenu() {
+  const items = getFiltered();
+  const wrap = document.getElementById('menu-wrap');
+  const empty = document.getElementById('empty-state');
+
+  if (items.length === 0) {
+    wrap.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  // Group by category
+  const groups = {};
+  items.forEach(item => {
+    if (!groups[item.category]) groups[item.category] = [];
+    groups[item.category].push(item);
+  });
+
+  let html = '';
+  Object.entries(groups).forEach(([cat, catItems]) => {
+    html += `<h2 class="section-label" style="text-transform: capitalize;">${getEmoji(cat)} ${escHtml(cat.toLowerCase())}</h2>`;
+    html += `<div class="grid">`;
+    catItems.forEach(item => {
+      html += `
+        <div class="card" onclick="openModal(${item.id})" role="button" tabindex="0" aria-label="${escHtml((item.name || '').toLowerCase())}">
+          <div class="card-img-wrap">
+            ${imgOrPlaceholder(item, 'card-img')}
+            <span class="card-badge" style="text-transform: capitalize;">${escHtml((item.category || '').toLowerCase())}</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name" style="text-transform: capitalize;">${escHtml((item.name || '').toLowerCase())}</div>
+            <div class="card-cat" style="text-transform: capitalize;">${escHtml((item.category || '').toLowerCase())}</div>
+            <div class="card-servings">${Number(item.availableServings || 0)} serving${Number(item.availableServings) === 1 ? '' : 's'} available today</div>
+            <div class="card-price">${fmt(item.price)}</div>
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+  });
+
+  wrap.innerHTML = html;
+}
+
+// Modal
+function openModal(id) {
+  const item = allItems.find(i => i.id === id);
+  if (!item) return;
+
+  modalQty = 1;
+  activeModalItem = item;
+
+  const imgHtml = item.image
+    ? `<img class="modal-img" src="${escHtml(item.image)}" alt="${escHtml(item.name)}" onerror="this.outerHTML='<div class=\\'modal-img-placeholder\\'>${getEmoji(item.category)}</div>'">`
+    : `<div class="modal-img-placeholder">${getEmoji(item.category)}</div>`;
+
+  document.getElementById('modal-content').innerHTML = `
+    ${imgHtml}
+    <div class="modal-body">
+      <div class="modal-cat">${escHtml(item.category)}</div>
+      <div class="modal-name">${escHtml(item.name)}</div>
+      <div class="modal-price">${fmt(item.price)}</div>
+      <div class="card-servings">${Number(item.availableServings || 0)} serving${Number(item.availableServings) === 1 ? '' : 's'} available today</div>
+      
+      <div class="modal-qty-section" style="display: flex; align-items: center; justify-content: space-between; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
+        <span style="font-size: 13px; color: var(--muted); font-weight: 500;">Quantity</span>
+        <div class="qty-adjuster" style="display: flex; align-items: center; gap: 14px; background: var(--dark3); border: 1px solid var(--border); padding: 4px 8px; border-radius: 100px;">
+          <button onclick="adjustModalQty(-1)" style="width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--dark4); color: var(--text); font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">−</button>
+          <span id="modal-qty" style="font-size: 15px; font-weight: 700; min-width: 20px; text-align: center;">1</span>
+          <button onclick="adjustModalQty(1)" style="width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--dark4); color: var(--text); font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">+</button>
+        </div>
+      </div>
+      
+      <button onclick="addToCartFromModal(${item.id})" style="width: 100%; margin-top: 20px; padding: 14px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--gold) 0%, #c8922a 100%); color: #0e0e12; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; font-family: 'Inter', sans-serif;">
+        <span>Add to Order</span>
+        <span id="modal-add-total">${fmt(item.price)}</span>
+      </button>
+    </div>`;
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close modal on swipe down
+let touchStartY = 0;
+document.getElementById('modal').addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+document.getElementById('modal').addEventListener('touchend', e => {
+  if (e.changedTouches[0].clientY - touchStartY > 60) closeModalBtn();
+});
+
+// ── INDEXEDDB IMAGE CACHE ──
+const DB_NAME = 'ComodaImageCache';
+const DB_VERSION = 1;
+const STORE_NAME = 'images';
+
+function openImageDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME);
+      }
+    };
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function getCachedImage(url) {
+  if (!url) return null;
+  try {
+    const db = await openImageDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readonly');
+      const store = tx.objectStore(STORE_NAME);
+      const req = store.get(url);
+      req.onsuccess = () => resolve(req.result ? URL.createObjectURL(req.result) : null);
+      req.onerror = () => resolve(null);
+    });
+  } catch (e) {
+    return null;
+  }
+}
+
+async function cacheImage(url) {
+  if (!url) return null;
+  try {
+    // Check if already cached
+    let cached = await getCachedImage(url);
+    if (cached) return cached;
+
+    // Fetch and store
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Network error');
+    const blob = await res.blob();
+    
+    const db = await openImageDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      store.put(blob, url);
+      tx.oncomplete = () => resolve(URL.createObjectURL(blob));
+      tx.onerror = () => resolve(url); // fallback to original url
+    });
+  } catch (e) {
+    console.error('Failed to cache image:', url, e);
+    return url; // fallback to original
+  }
+}
+
+// Fetch menu
+async function fetchMenu() {
+  if (!allItems.length) renderSkeletons(8);
+  try {
+    const res = await fetch(`${API_BASE}/menu`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+    });
+    if (!res.ok) throw new Error('Failed to fetch menu');
+    const data = await res.json();
+
+    let fetchedItems = data.items || [];
+
+    // Pre-cache images before rendering
+    for (const item of fetchedItems) {
+      if (item.image) {
+        // Use the original URL to cache, but override item.image with the local blob URL
+        const originalUrl = item.image;
+        item.originalImage = originalUrl;
+        item.image = await cacheImage(originalUrl);
+      }
+    }
+    
+    allItems = fetchedItems;
+
+    // Update header
+    if (data.restaurant) {
+      const parts = data.restaurant.split(' ');
+      document.getElementById('restaurant-name').textContent = parts[0];
+      document.title = data.restaurant + ' — Digital Menu';
+    }
+
+    // Last updated
+    if (data.updated_at) {
+      const d = new Date(data.updated_at);
+      document.getElementById('last-updated').textContent =
+        'Live menu · Updated ' + d.toLocaleTimeString('en-PH', {hour:'2-digit', minute:'2-digit'});
+    }
+
+    // Build nav categories
+    const cats = [...new Set(allItems.map(i => i.category))];
+    buildNav(cats);
+
+    // Hide skeleton
+    document.getElementById('skeleton-wrap').style.display = 'none';
+    document.getElementById('menu-wrap').style.display = 'block';
+
+    renderMenu();
+
+    // Refresh serving counts promptly after kitchen use, sales, or restocking.
+    setTimeout(fetchMenu, 5000);
+  } catch (err) {
+    document.getElementById('skeleton-wrap').innerHTML = `
+      <div class="state">
+        <div class="icon">📡</div>
+        <h3>Unable to load menu</h3>
+        <p>Please check your connection or ask staff for assistance.</p>
+        <br/><button onclick="fetchMenu()" style="margin-top:8px;padding:10px 24px;background:var(--gold);border:none;border-radius:8px;color:#0e0e12;font-weight:600;cursor:pointer;font-size:14px;">Try Again</button>
+      </div>`;
+  }
+}
+
+// ── CUSTOM CART AND CHECKOUT LOGIC ──
+let cart = [];
+let modalQty = 1;
+let activeModalItem = null;
+let selectedPaymentMethod = 'Cash';
+
+function setCustomerPayMethod(method) {
+  selectedPaymentMethod = method;
+  const cashBtn = document.getElementById('pay-method-cash');
+  const onlineBtn = document.getElementById('pay-method-online');
+  
+  if (method === 'Cash') {
+    cashBtn.style.borderColor = 'var(--gold)';
+    cashBtn.style.color = 'var(--gold-light)';
+    cashBtn.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+    onlineBtn.style.borderColor = 'var(--border)';
+    onlineBtn.style.color = 'var(--muted)';
+    onlineBtn.style.boxShadow = 'none';
+  } else {
+    cashBtn.style.borderColor = 'var(--border)';
+    cashBtn.style.color = 'var(--muted)';
+    cashBtn.style.boxShadow = 'none';
+    onlineBtn.style.borderColor = 'var(--gold)';
+    onlineBtn.style.color = 'var(--gold-light)';
+    onlineBtn.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+  }
+}
+
+function adjustModalQty(delta) {
+  if (!activeModalItem) return;
+  const maximum = Number(activeModalItem.availableServings || 0);
+  modalQty = Math.min(maximum, Math.max(1, modalQty + delta));
+  document.getElementById('modal-qty').textContent = modalQty;
+  document.getElementById('modal-add-total').textContent = fmt(activeModalItem.price * modalQty);
+}
+
+function addToCartFromModal(itemId) {
+  const item = allItems.find(i => i.id === itemId);
+  if (!item) return;
+
+  const existing = cart.find(c => c.id === itemId);
+  const requestedTotal = (existing?.quantity || 0) + modalQty;
+  if (requestedTotal > Number(item.availableServings || 0)) {
+    alert(`Only ${item.availableServings || 0} servings of ${item.name} are available today.`);
+    return;
+  }
+  if (existing) {
+    existing.quantity += modalQty;
+  } else {
+    cart.push({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      category: item.category,
+      image: item.image,
+      quantity: modalQty
+    });
+  }
+
+  saveCartToLocalStorage();
+  updateCartBadge();
+  closeModalBtn();
+}
+
+function updateCartBadge() {
+  const totalQty = cart.reduce((sum, c) => sum + c.quantity, 0);
+  const badge = document.getElementById('cart-badge');
+  const btn = document.getElementById('cart-float-btn');
+
+  if (totalQty > 0) {
+    badge.textContent = totalQty;
+    btn.style.display = 'flex';
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function saveCartToLocalStorage() {
+  localStorage.setItem('comoda_customer_cart', JSON.stringify(cart));
+}
+
+function loadCartFromLocalStorage() {
+  try {
+    const saved = localStorage.getItem('comoda_customer_cart');
+    if (saved) {
+      cart = JSON.parse(saved);
+      updateCartBadge();
+    }
+  } catch (e) {
+    console.error('Failed to parse customer cart', e);
+  }
+}
+
+function openCartDrawer() {
+  const container = document.getElementById('cart-items-container');
+  if (cart.length === 0) {
+    container.innerHTML = `<div style="text-align:center; padding: 20px; color:var(--muted); font-size: 13px;">Your cart is empty. Add delicious food from the menu!</div>`;
+  } else {
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item-row">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${escHtml(item.name)}</div>
+          <div class="cart-item-price">${fmt(item.price * item.quantity)}</div>
+        </div>
+        <div class="cart-item-controls">
+          <div style="display: flex; align-items: center; gap: 8px; background: var(--dark4); padding: 3px 6px; border-radius: 100px; border: 1px solid var(--border);">
+            <button class="cart-qty-btn" onclick="adjustCartItemQty(${item.id}, -1)">−</button>
+            <span class="cart-qty-val">${item.quantity}</span>
+            <button class="cart-qty-btn" onclick="adjustCartItemQty(${item.id}, 1)">+</button>
+          </div>
+          <button class="cart-remove-btn" onclick="removeCartItem(${item.id})">✕</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Parse table parameter
+  const params = new URLSearchParams(window.location.search);
+  const tableNo = params.get('table');
+  const tableInput = document.getElementById('checkout-table');
+  const lockedMsg = document.getElementById('table-locked-msg');
+
+  if (tableNo) {
+    tableInput.value = tableNo;
+    tableInput.readOnly = true;
+    tableInput.style.opacity = '0.7';
+    lockedMsg.style.display = 'block';
+  } else {
+    tableInput.readOnly = false;
+    tableInput.style.opacity = '1';
+    lockedMsg.style.display = 'none';
+  }
+
+  // Calculate totals
+  const subtotal = cart.reduce((sum, c) => sum + (c.price * c.quantity), 0);
+  document.getElementById('checkout-subtotal').textContent = fmt(subtotal);
+  document.getElementById('checkout-total').textContent = fmt(subtotal);
+
+  // Toggle checkout button state
+  document.getElementById('btn-submit-order').disabled = cart.length === 0;
+  document.getElementById('btn-submit-order').style.opacity = cart.length === 0 ? '0.5' : '1';
+
+  document.getElementById('cart-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartDrawer(e) {
+  if (e.target === document.getElementById('cart-overlay')) closeCartDrawerBtn();
+}
+function closeCartDrawerBtn() {
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function adjustCartItemQty(itemId, delta) {
+  const item = cart.find(c => c.id === itemId);
+  if (!item) return;
+  
+  item.quantity += delta;
+  if (item.quantity <= 0) {
+    removeCartItem(itemId);
+  } else {
+    saveCartToLocalStorage();
+    updateCartBadge();
+    openCartDrawer(); // refresh drawer contents
+  }
+}
+
+function removeCartItem(itemId) {
+  cart = cart.filter(c => c.id !== itemId);
+  saveCartToLocalStorage();
+  updateCartBadge();
+  openCartDrawer(); // refresh drawer contents
+}
+
+async function submitCustomerOrder() {
+  const tableInput = document.getElementById('checkout-table');
+  const tableNumber = parseInt(tableInput.value);
+  const notes = document.getElementById('checkout-notes').value.trim();
+
+  if (isNaN(tableNumber) || tableNumber < 1) {
+    alert('Please enter a valid Table Number to place your order.');
+    return;
+  }
+
+  if (tableNumber > 15) {
+    alert('Table limit reached (maximum 15 tables only).');
+    return;
+  }
+
+  if (cart.length === 0) {
+    alert('Your cart is empty.');
+    return;
+  }
+
+  const btn = document.getElementById('btn-submit-order');
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  btn.innerHTML = '<span>Placing Order...</span>';
+
+  const orderPayload = {
+    tableNumber: tableNumber,
+    notes: notes,
+    paymentMethod: selectedPaymentMethod,
+    items: cart.map(c => ({
+      menuItemId: c.id,
+      quantity: c.quantity
+    }))
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/customer-order`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      },
+      body: JSON.stringify(orderPayload)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || 'Failed to place order.');
+    }
+
+    // Success! Clear cart
+    cart = [];
+    saveCartToLocalStorage();
+    updateCartBadge();
+    
+    // Close drawer
+    closeCartDrawerBtn();
+
+    // Show success modal
+    showSuccessModal(data.orderId, data.tableNumber, data.total);
+
+  } catch (err) {
+    alert('Error placing order: ' + err.message);
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.innerHTML = originalText;
+  }
+}
+
+function showSuccessModal(orderId, tableNumber, total) {
+  document.getElementById('success-order-id').textContent = '#' + orderId;
+  document.getElementById('success-table-id').textContent = 'Table ' + tableNumber;
+  document.getElementById('success-total').textContent = fmt(total);
+  
+  document.getElementById('success-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSuccessModal(e) {
+  if (e.target === document.getElementById('success-overlay')) closeSuccessModalBtn();
+}
+function closeSuccessModalBtn() {
+  document.getElementById('success-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('checkout-notes').value = '';
+}
+
+// ── TABLE OCCUPANCY CHECK ──
+let tableIsBlocked = false;
+
+async function checkTableOccupancy() {
+  const params = new URLSearchParams(window.location.search);
+  const tableNo = params.get('table');
+  if (!tableNo) return; // no table specified, nothing to block
+
+  try {
+    const res = await fetch(`${API_BASE}/table-status/${tableNo}`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+    });
+    const data = await res.json();
+
+    if (data.occupied) {
+      showTableOccupiedOverlay(data);
+      tableIsBlocked = true;
+    } else {
+      hideTableOccupiedOverlay();
+      tableIsBlocked = false;
+    }
+  } catch (err) {
+    console.error('Failed to check table status:', err);
+    // Don't block on network errors — let the customer try to order
+  }
+}
+
+function showTableOccupiedOverlay(data) {
+  const overlay = document.getElementById('table-occupied-overlay');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  document.getElementById('occupied-table').textContent = 'Table ' + data.table;
+  document.getElementById('occupied-order').textContent = data.orderId ? '#' + data.orderId : '—';
+  document.getElementById('occupied-status').textContent = data.status || '—';
+}
+
+function hideTableOccupiedOverlay() {
+  const overlay = document.getElementById('table-occupied-overlay');
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+async function recheckTableStatus() {
+  const btn = document.getElementById('recheck-btn');
+  btn.textContent = 'Checking...';
+  btn.disabled = true;
+  await checkTableOccupancy();
+  btn.textContent = '🔄 Check Again';
+  btn.disabled = false;
+}
+
+// Periodically re-check every 15 seconds so the overlay auto-dismisses when the table frees up
+setInterval(() => {
+  if (tableIsBlocked) checkTableOccupancy();
+}, 15000);
+
+// Init
+renderSkeletons(8);
+fetchMenu();
+loadCartFromLocalStorage();
+checkTableOccupancy();
+
+// Keyboard: close modals on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModalBtn();
+    closeCartDrawerBtn();
+    closeSuccessModalBtn();
+  }
+});
+</script>
+</body>
+</html>

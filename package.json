@@ -1,0 +1,14 @@
+{
+    "name": "management-system",
+    "version": "1.0.0",
+    "description": "Comoda Restaurant Management System — run both servers with one command",
+    "scripts": {
+        "start": "concurrently --kill-others-on-fail --prefix-colors \"cyan,magenta\" --names \"BACKEND,FRONTEND\" \"npm run backend\" \"npm run frontend\"",
+        "dev": "concurrently --kill-others-on-fail --prefix-colors \"cyan,magenta\" --names \"BACKEND,FRONTEND\" \"npm run backend\" \"npm run frontend\"",
+        "backend": "cd backend && php artisan serve --host=127.0.0.1 --port=8001",
+        "frontend": "cd frontend && npm run dev"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2"
+    }
+}

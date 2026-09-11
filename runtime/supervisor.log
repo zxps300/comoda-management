@@ -1,0 +1,238 @@
+2026-08-30 23:38:03 Checking database migrations.
+2026-08-30 23:38:05 Comoda startup completed.
+2026-08-30 23:50:51 Checking database migrations.
+2026-08-30 23:50:55 Startup failed: Cloudflare did not return a public connection.
+2026-08-30 23:52:52 Checking database migrations.
+2026-08-30 23:52:58 The permanent QR address is connected.
+2026-08-30 23:52:58 Comoda startup completed.
+2026-08-30 23:57:46 Checking database migrations.
+2026-08-30 23:57:51 The permanent QR address is connected.
+2026-08-30 23:57:51 Comoda startup completed.
+2026-08-31 00:59:20 Checking database migrations.
+2026-08-31 00:59:26 The permanent QR address is connected.
+2026-08-31 00:59:26 Comoda startup completed.
+2026-08-31 07:03:50 Starting the backend on port 8001.
+2026-08-31 07:03:51 Starting the management screen on port 5174.
+2026-08-31 07:03:55 Internet connection stopped; reconnecting.
+2026-08-31 07:04:03 The temporary tunnel is online, but the permanent QR target is not configured yet.
+2026-09-01 00:22:45 Starting the backend on port 8001.
+2026-09-01 09:53:48 Starting the management screen on port 5174.
+2026-09-01 15:02:26 Starting the backend on port 8001.
+2026-09-01 15:14:18 Starting the backend on port 8001.
+2026-09-01 15:19:23 Checking database migrations.
+2026-09-01 15:19:38 The temporary tunnel is online, but the permanent QR target is not configured yet.
+2026-09-01 15:19:38 Comoda startup completed.
+2026-09-01 21:15:36 Internet connection stopped; reconnecting.
+2026-09-01 21:15:52 The temporary tunnel is online, but the permanent QR target is not configured yet.
+2026-09-01 21:18:16 Checking database migrations.
+2026-09-01 21:18:25 The permanent QR address is connected.
+2026-09-01 21:18:25 Comoda startup completed.
+2026-09-01 21:20:32 Internet connection stopped; reconnecting.
+2026-09-01 21:20:45 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:20:52 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:20:59 Internet connection stopped; reconnecting.
+2026-09-01 21:21:07 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:21:13 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:21:22 Internet connection stopped; reconnecting.
+2026-09-01 21:21:30 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:21:38 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:21:44 Internet connection stopped; reconnecting.
+2026-09-01 21:21:52 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:21:59 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:22:07 Internet connection stopped; reconnecting.
+2026-09-01 21:22:21 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:22:26 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:22:34 Internet connection stopped; reconnecting.
+2026-09-01 21:22:41 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:22:47 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:22:55 Internet connection stopped; reconnecting.
+2026-09-01 21:23:00 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:23:05 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:23:13 Internet connection stopped; reconnecting.
+2026-09-01 21:23:20 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:23:25 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:23:33 Internet connection stopped; reconnecting.
+2026-09-01 21:23:40 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:23:48 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:23:58 Internet connection stopped; reconnecting.
+2026-09-01 21:24:07 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:24:12 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:24:20 Internet connection stopped; reconnecting.
+2026-09-01 21:24:26 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:25:21 Checking database migrations.
+2026-09-01 21:25:34 The permanent QR address is connected.
+2026-09-01 21:25:34 Comoda startup completed.
+2026-09-01 21:25:42 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-01 21:25:49 Internet health check failed (2/3); waiting before reconnecting.
+2026-09-01 21:25:56 Internet health check failed (3/3); waiting before reconnecting.
+2026-09-01 21:25:56 Internet connection stopped; reconnecting.
+2026-09-01 21:26:11 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-01 21:26:33 Recovery attempt failed: Cloudflare did not return a healthy public connection.
+2026-09-01 21:26:41 Internet health check failed (4/3); waiting before reconnecting.
+2026-09-01 21:26:41 Internet connection stopped; reconnecting.
+2026-09-01 21:26:43 Recovery attempt failed: cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:26:50 Internet connection stopped; reconnecting.
+2026-09-01 21:26:52 Recovery attempt failed: cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:26:59 Internet connection stopped; reconnecting.
+2026-09-01 21:27:01 Recovery attempt failed: cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:27:08 Internet connection stopped; reconnecting.
+2026-09-01 21:27:09 Recovery attempt failed: cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:27:16 Internet connection stopped; reconnecting.
+2026-09-01 21:27:18 Recovery attempt failed: cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:27:26 Internet connection stopped; reconnecting.
+2026-09-01 21:29:17 Checking database migrations.
+2026-09-01 21:29:23 Startup failed: cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:33:43 Checking database migrations.
+2026-09-01 21:33:51 Startup failed: cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:35:02 Checking database migrations.
+2026-09-01 21:35:08 Internet startup is waiting for Cloudflare; retrying in 60 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:35:08 Comoda startup completed.
+2026-09-01 21:36:15 Reconnecting the permanent QR address.
+2026-09-01 21:36:17 Internet reconnect failed; retrying in 120 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:38:20 Reconnecting the permanent QR address.
+2026-09-01 21:38:22 Internet reconnect failed; retrying in 240 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 21:42:23 Reconnecting the permanent QR address.
+2026-09-01 21:42:26 Internet reconnect failed; retrying in 480 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 22:19:02 Reconnecting the permanent QR address.
+2026-09-01 22:19:40 Internet reconnect failed; retrying in 900 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-01 22:34:42 Reconnecting the permanent QR address.
+2026-09-01 22:36:15 The permanent QR address is connected.
+2026-09-01 22:36:41 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-01 22:36:56 Internet health check failed (2/3); waiting before reconnecting.
+2026-09-01 22:37:12 Internet health check failed (3/3); waiting before reconnecting.
+2026-09-01 22:37:12 Internet connection stopped; preparing to reconnect.
+2026-09-01 22:37:17 Reconnecting the permanent QR address.
+2026-09-01 22:37:47 The permanent QR address is connected.
+2026-09-01 22:38:03 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-01 22:38:18 Internet health check failed (2/3); waiting before reconnecting.
+2026-09-01 22:38:33 Internet health check failed (3/3); waiting before reconnecting.
+2026-09-01 22:38:33 Internet connection stopped; preparing to reconnect.
+2026-09-01 22:38:34 Reconnecting the permanent QR address.
+2026-09-01 22:38:52 The permanent QR address is connected.
+2026-09-01 22:39:09 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-01 22:39:30 Internet health check failed (2/3); waiting before reconnecting.
+2026-09-01 22:39:47 Internet health check failed (3/3); waiting before reconnecting.
+2026-09-01 22:39:47 Internet connection stopped; preparing to reconnect.
+2026-09-01 22:39:48 Reconnecting the permanent QR address.
+2026-09-01 22:42:17 Checking database migrations.
+2026-09-01 22:42:22 The permanent QR address is connected.
+2026-09-01 22:42:22 Comoda startup completed.
+2026-09-01 22:42:51 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-01 22:43:06 Internet health check failed (2/3); waiting before reconnecting.
+2026-09-01 22:43:22 Internet health check failed (3/3); waiting before reconnecting.
+2026-09-01 22:43:22 Internet connection stopped; preparing to reconnect.
+2026-09-01 22:43:24 Reconnecting the permanent QR address.
+2026-09-01 22:53:17 Checking database migrations.
+2026-09-01 22:54:23 Internet startup is waiting for Cloudflare; retrying in 60 seconds. The Comoda backend is not responding on port 8001.
+2026-09-01 22:54:23 Comoda startup completed.
+2026-09-02 00:29:59 Checking database migrations.
+2026-09-02 00:30:16 Starting the backend on port 8001.
+2026-09-02 00:30:32 Checking database migrations.
+2026-09-02 00:31:29 The permanent QR address is connected.
+2026-09-02 00:31:29 Comoda startup completed.
+2026-09-02 00:31:40 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:31:41 Starting the backend on port 8001.
+2026-09-02 00:31:53 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-02 00:32:04 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:32:04 Starting the backend on port 8001.
+2026-09-02 00:32:23 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:32:23 Starting the backend on port 8001.
+2026-09-02 00:32:36 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-02 00:32:47 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:32:48 Starting the backend on port 8001.
+2026-09-02 00:33:05 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-02 00:33:16 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:33:16 Starting the backend on port 8001.
+2026-09-02 00:33:32 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:33:32 Starting the backend on port 8001.
+2026-09-02 00:33:57 Checking database migrations.
+2026-09-02 00:34:09 The permanent QR address is connected.
+2026-09-02 00:34:10 Comoda startup completed.
+2026-09-02 00:34:24 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-02 00:34:50 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:34:51 Starting the backend on port 8001.
+2026-09-02 00:35:15 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-02 00:36:59 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:37:00 Starting the backend on port 8001.
+2026-09-02 00:37:30 Checking database migrations.
+2026-09-02 00:37:37 The permanent QR address is connected.
+2026-09-02 00:37:37 Comoda startup completed.
+2026-09-02 00:39:26 The backend on port 8001 stopped responding; restarting it.
+2026-09-02 00:39:26 Starting the backend on port 8001.
+2026-09-02 00:44:02 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-02 00:45:54 Checking database migrations.
+2026-09-02 00:46:17 The permanent QR address is connected.
+2026-09-02 00:46:17 Comoda startup completed.
+2026-09-02 00:49:05 Recovery attempt failed: curl: (28) Operation timed out after 21099 milliseconds with 0 bytes received
+2026-09-02 00:54:30 Internet health check failed (1/3); waiting before reconnecting.
+2026-09-02 00:57:29 Recovery attempt failed: curl: (28) Operation timed out after 20015 milliseconds with 0 bytes received
+2026-09-02 01:00:35 Recovery attempt failed: curl: (28) Operation timed out after 20018 milliseconds with 0 bytes received
+2026-09-02 01:01:46 Recovery attempt failed: curl: (28) Operation timed out after 20028 milliseconds with 0 bytes received
+2026-09-02 01:02:16 Recovery attempt failed: curl: (28) Operation timed out after 20018 milliseconds with 0 bytes received
+2026-09-02 01:04:24 Checking database migrations.
+2026-09-02 01:07:04 Starting the local database.
+2026-09-02 01:07:30 Startup failed: MySQL did not start within 20 seconds.
+2026-09-02 02:02:25 Checking database migrations.
+2026-09-02 02:02:27 Starting the backend on port 8001.
+2026-09-02 02:02:41 The permanent QR address is connected.
+2026-09-02 02:02:41 Comoda startup completed.
+2026-09-02 07:07:07 Checking database migrations.
+2026-09-02 07:07:36 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-02 07:07:49 The permanent QR address is connected.
+2026-09-02 07:07:49 Comoda startup completed.
+2026-09-02 09:36:16 Checking database migrations.
+2026-09-02 09:36:41 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-02 09:36:43 Internet startup is waiting for Cloudflare; retrying in 60 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-02 09:36:43 Comoda startup completed.
+2026-09-02 09:37:45 Reconnecting the permanent QR address.
+2026-09-02 09:37:46 Internet reconnect failed; retrying in 120 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-02 09:39:50 Reconnecting the permanent QR address.
+2026-09-02 09:40:03 Internet reconnect failed; retrying in 240 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-02 09:44:05 Reconnecting the permanent QR address.
+2026-09-02 09:44:05 Internet reconnect failed; retrying in 480 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-02 09:52:09 Reconnecting the permanent QR address.
+2026-09-02 09:52:26 The permanent QR address is connected.
+2026-09-02 13:48:54 Checking database migrations.
+2026-09-02 13:49:22 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-02 13:49:39 The permanent QR address is connected.
+2026-09-02 13:49:39 Comoda startup completed.
+2026-09-03 10:21:59 Checking database migrations.
+2026-09-03 10:22:25 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-03 10:22:43 The permanent QR address is connected.
+2026-09-03 10:22:43 Comoda startup completed.
+2026-09-04 07:04:48 Starting the local database.
+2026-09-04 07:05:06 Checking database migrations.
+2026-09-04 07:05:23 Startup failed: Database migration failed. See the Laravel log for details.
+2026-09-04 11:23:01 Checking database migrations.
+2026-09-04 11:23:31 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-04 11:24:00 Internet startup is waiting for Cloudflare; retrying in 60 seconds. The new tunnel could not be published to the permanent QR address.
+2026-09-04 11:24:00 Comoda startup completed.
+2026-09-04 11:27:11 Checking database migrations.
+2026-09-04 11:27:16 The permanent QR address is connected.
+2026-09-04 11:27:16 Comoda startup completed.
+2026-09-04 12:06:15 Checking database migrations.
+2026-09-04 12:06:20 The permanent QR address is connected.
+2026-09-04 12:06:20 Comoda startup completed.
+2026-09-05 00:03:09 Checking database migrations.
+2026-09-05 00:03:38 The saved tunnel is no longer accepted by Cloudflare; replacing it.
+2026-09-05 00:03:50 The permanent QR address is connected.
+2026-09-05 00:03:50 Comoda startup completed.
+2026-09-06 22:53:11 Starting the local database.
+2026-09-06 22:53:24 Checking database migrations.
+2026-09-06 22:53:27 Starting the backend on port 8001.
+2026-09-06 22:53:28 Starting the management screen on port 5174.
+2026-09-06 22:53:31 Internet startup is waiting for Cloudflare; retrying in 60 seconds. cloudflared exited before creating a public address. Check C:\Bryan Lee\up\Management System (3)\Management System\Management System\runtime\cloudflared.log
+2026-09-06 22:53:31 Comoda startup completed.
+2026-09-06 22:54:33 Reconnecting the permanent QR address.
+2026-09-06 22:54:48 The permanent QR address is connected.
+2026-09-10 19:43:48 Starting the local database.
+2026-09-10 19:43:54 Checking database migrations.
+2026-09-10 19:44:28 Starting the backend on port 8001.
+2026-09-10 19:44:30 Startup failed: curl: (28) Operation timed out after 2004 milliseconds with 0 bytes received
+2026-09-11 11:06:53 Checking database migrations.
+2026-09-11 11:07:11 The permanent QR address is connected.
+2026-09-11 11:07:11 Comoda startup completed.
+2026-09-11 11:23:13 Starting the management screen on port 5174.
+2026-09-11 11:26:59 Starting the local database.
+2026-09-11 11:27:21 Checking database migrations.
+2026-09-11 11:27:41 Startup failed: Database migration failed. See the Laravel log for details.
