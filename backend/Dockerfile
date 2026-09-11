@@ -24,7 +24,9 @@ RUN chmod -R 777 storage bootstrap/cache
 # Create SQLite database and run setup
 RUN touch database/database.sqlite
 RUN chmod 777 database/database.sqlite
-RUN cp .env.example .env
+RUN cp .env.example .env && \
+    sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=sqlite/g' .env && \
+    sed -i 's/DB_DATABASE=comoda_db/#DB_DATABASE=comoda_db/g' .env
 RUN php artisan key:generate
 RUN php artisan migrate --force --seed
 
