@@ -31,4 +31,4 @@ RUN php artisan migrate --force --seed
 ENV PORT=10000
 EXPOSE 10000
 
-CMD ["php", "-S", "0.0.0.0:10000", "-t", "public", "public/index.php"]
+CMD ["php", "-S", "0.0.0.0:10000", "router.php"]
