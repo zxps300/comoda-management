@@ -18,15 +18,16 @@ COPY . .
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permissions for Laravel storage
+# Set permissions for Laravel storage & database
 RUN chmod -R 777 storage bootstrap/cache
 
 # Create SQLite database and run setup
 RUN touch database/database.sqlite
+RUN chmod 777 database/database.sqlite
 RUN cp .env.example .env
 RUN php artisan key:generate
 RUN php artisan migrate --force --seed
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-10000} -t public"]
